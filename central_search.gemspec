@@ -5,7 +5,7 @@ require 'central_search/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "centralsearch"
-  spec.version       = "0.1.0"
+  spec.version       = "0.1.1"
   spec.authors       = ["Magnolia K"]
   spec.email         = ["magnolia.k@icloud.com"]
 

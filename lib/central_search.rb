@@ -44,7 +44,7 @@ class CentralSearch
   end
 
   def cmd_version
-    puts "centralsearch version 0.1.0"
+    puts "centralsearch version 0.1.1"
   end
 
   def cmd_search_by_keyword
