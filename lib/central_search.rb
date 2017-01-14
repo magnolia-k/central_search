@@ -9,6 +9,22 @@ class CentralSearch
   end
 
   def run
+    if @cmd == nil then
+      while str = STDIN.gets
+        break if str != ""
+      end
+      args = str.split(/\s+/)
+
+      if args.length < 2 then
+        @groupid = args[0]
+        @cmd = :cmd_search_by_keyword
+      else 
+        @groupid = args[0]
+        @artifactid = args[1]
+        @cmd = :cmd_search_by_g_and_a
+      end
+    end
+
     case @cmd
     when :cmd_help
       cmd_help
@@ -198,7 +214,7 @@ class CentralSearch
     if @cmd == nil then
       case argv.length
       when 0
-        @cmd = :cmd_help
+#        @cmd = :cmd_help
       when 1
         @param[:keyword] = argv.shift
 
