@@ -117,6 +117,12 @@ class CentralSearch
       }
     end
 
+    if @versionform != nil then
+      results.select! do |result|
+        result[:v].match( @versionform )
+      end
+    end
+
     return if results.length == 0
 
     groupid_max_length    = results.map { |i| i[:g] }.max_by { |g| g.length }.length
