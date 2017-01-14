@@ -4,8 +4,10 @@ Central Repositoryを検索するツールです。
 
 ## Installation
 
+```
   $ curl -O https://github.com/magnolia-k/central_search/releases/download/0.1.1/centralsearch-0.1.1.gem
   $ gem install centralsearch-0.1.1.gem
+```
 
 ## Usage
 
