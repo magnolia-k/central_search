@@ -3,6 +3,8 @@ require 'open-uri'
 require 'rubygems'
 require 'json'
 
+require 'rexml/document'
+
 class CentralSearch
   VERSION = '0.1.1'
 
@@ -36,6 +38,8 @@ class CentralSearch
       cmd_search_by_keyword
     when :cmd_search_by_g_and_a
       cmd_search_g_and_a
+    when :cmd_display_pom_entry
+      cmd_display_pom_entry
     end
   end
 
@@ -158,6 +162,44 @@ class CentralSearch
     return docs
   end
 
+  def cmd_display_pom_entry
+    url = "http://search.maven.org/remotecontent?filepath="
+    groupid = @groupid.gsub(/\./, '/')
+    
+    param = groupid + "/" + @artifactid + "/" + @version + "/" + @artifactid + "-" + @version +
+      ".pom"
+
+    begin
+      open( url + param ) do |res|
+        doc = REXML::Document.new( res )
+
+        if doc.root == nil then
+          raise "error: can't read pom.xml."
+        end
+
+        puts "  groupID: " + doc.elements['project/groupId'].text
+        puts "  artifactID: " + doc.elements['project/artifactId'].text
+        puts "  version: " + doc.elements['project/version'].text
+        puts "  description: " + doc.elements['project/description'].text
+
+        if doc.elements['project/organization/name'] != nil then
+          puts "  organization: " + doc.elements['project/organization/name'].text
+        end
+
+        if doc.elements['project/url'] != nil then
+          puts "  url: " + doc.elements['project/url'].text
+        end
+
+        if doc.elements['project/scm/url'] != nil then
+          puts "  scm: " + doc.elements['project/scm/url'].text
+        end
+
+      end
+    rescue OpenURI::HTTPError => e
+      raise "error: invalid param: #{@groupid}, #{@artifactid}, #{@version}"
+    end
+  end
+
   def parse_options( argv )
     @cmd = nil
 
@@ -234,6 +276,10 @@ class CentralSearch
 
         if version.match(/\)$/) then
           @cmd = :cmd_search_by_g_and_a
+        else
+          @version = version
+
+          @cmd = :cmd_display_pom_entry
         end
       end
     end
