@@ -42,7 +42,8 @@ class CentralSearch
   private
   def cmd_help
     puts "usage: centralsearch [--version] [--help]"
-    puts "                     artifactid"
+    puts "                     <keyword> [-a][-g]"
+    puts "                     <groupid> <artifactid>"
   end
 
   def cmd_version
