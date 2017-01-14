@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'central_search/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "central_search"
+  spec.name          = "centralsearch"
   spec.version       = "0.1.0"
   spec.authors       = ["Magnolia K"]
   spec.email         = ["magnolia.k@icloud.com"]
