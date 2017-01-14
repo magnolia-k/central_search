@@ -6,7 +6,7 @@ require 'json'
 require 'rexml/document'
 
 class CentralSearch
-  VERSION = '0.1.1'
+  VERSION = '0.2.0'
 
   def initialize( argv )
     parse_options( argv )
