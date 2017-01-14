@@ -5,9 +5,9 @@ require 'central_search'
 begin
   app = CentralSearch.new( ARGV )
   app.run
-#rescue => e
-#  $stderr.puts e
-#  exit 1
+rescue => e
+  $stderr.puts e
+  exit 1
 end
 
 exit 0
