@@ -4,6 +4,8 @@ require 'rubygems'
 require 'json'
 
 class CentralSearch
+  VERSION = '0.1.1'
+
   def initialize( argv )
     parse_options( argv )
   end
@@ -44,7 +46,7 @@ class CentralSearch
   end
 
   def cmd_version
-    puts "centralsearch version 0.1.1"
+    puts "centralsearch version #{VERSION}"
   end
 
   def cmd_search_by_keyword
